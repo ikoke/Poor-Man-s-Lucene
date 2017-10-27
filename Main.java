@@ -71,6 +71,7 @@ void FileListMaker()throws IOException
 	}while(flist.size()>0&&lc<=500000);
 	System.out.println("Out of there! Total number of files= "+fc+" and of directories= "+dc);
 }
+//Testing confirmed Indexing is broken currently
 void Invoke_Reader()
 {
 	
