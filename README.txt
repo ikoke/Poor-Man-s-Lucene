@@ -7,3 +7,9 @@ it reads the files & builds a Search Index on each File. The Index is basically 
 demonstrate pretty good search performance & would allow searching based on partal or full words & phrases.
 The system is implemented. But unit testing of the index building & E2E testing are not yet done. BFS traversal of directory, listing & reading
 of files is confirmed to be working.
+
+UPDATE- indexing & searching are both confirmed to be working. However program running into memory management problem with larger files.
+Creating Suffix Trie based search index for larger files recursively is resulting in StackOverflow exceptions.
+Doing the same iteratively is resulting in OutOfMemoryError .
+
+Will look into possible solutions. In worst case, might have to re-write code to use an efficient string search algorithm like KMP instead of any index.
