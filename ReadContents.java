@@ -6,10 +6,12 @@ class ReadContents {
 	 ArrayList<Character> f_cont=new ArrayList<Character>();
 	 private StringBuilder s=new StringBuilder("");
 	TrieNode root=new TrieNode();
+	TrieNodeIter iroot=new TrieNodeIter();
 	File p;
 	ReadContents(File p)
 	{
 		this.p=p;
+		System.out.println("In ReadContents= "+p.toString());
 		
 	}
 	void ReadfrmFile()throws Exception
@@ -25,18 +27,20 @@ class ReadContents {
 				break;
 			}
 		
-		System.out.println("Result= "+s.toString());	
+		//System.out.println("Result= "+s.toString());	
 		fr.close();
 		
 	}
 	void Indexer()
 	{		
+		System.out.println("In indexer");
+		System.out.println("In indexer string is "+s);
 		for(int i=0;i<s.length();i++)
-			root.insert(s.substring(i), i);
+			iroot.insert(s.substring(i), i);
 	}
 	ArrayList<Long> positionfinder(String s_t)
 	{
-		return root.find(s_t, 0);
+		return iroot.find(s_t, 0);
 	}
 
 }
