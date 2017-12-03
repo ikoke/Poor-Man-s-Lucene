@@ -35,8 +35,6 @@ void FileListMaker()throws IOException
 	//System.out.println(s.getPath());
 	
 	int lc=0;
-	//for(File f:flist)
-	//	System.out.print(f.getName()+"=====");
 	do {
 	//	System.out.println(lc+++" and "+flist.get(0).getPath());
 	if(flist.get(0).isDirectory())
@@ -66,15 +64,10 @@ void FileListMaker()throws IOException
 		flist.remove(0);
 		fc++;
 			}
-		//flist.add(s);
-	//	System.out.println("List at end of"+ lc+"th cycle= ");
-	//	for(File f:flist)
-	//	System.out.print(f.getName()+",");
-	//	System.out.println();
-	}while(flist.size()>0&&lc<=500000);
+	
+	}while(flist.size()>0);
 //	System.out.println("Out of there! Total number of files= "+fc+" and of directories= "+dc);
 }
-//Testing confirmed Indexing is broken currently
 void Invoke_Reader()throws IOException
 {
 	@SuppressWarnings("unused")
@@ -86,10 +79,6 @@ void Invoke_Reader()throws IOException
 		{
 			t_obj=new ReadContents(p);
 			t_obj.ReadfrmFile();
-			//f_arr.add(new ReadContents(p));
-		//	System.out.println("Hohoho2 ="+f_arr.get(f_arr.size()-1).toString());
-			//f_arr.get(f_arr.size()-1).ReadfrmFile();		
-			//f_arr.add(t_obj);
 			f_arr.add(t_obj);
 		}
 		catch(FileNotFoundException e)
