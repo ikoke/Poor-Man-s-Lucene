@@ -1,3 +1,7 @@
+//Class representing suffix trie. Currently not being used
+//suffix trie for large set of files is completely eating up the available heap space & throwing exception at runtime
+//since the only advantage suffix trie gives in this scenario is to allow multi token searches, we are choosing Simple Trie 
+//for now.
 package FileRead;
 
 import java.util.ArrayList;

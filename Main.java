@@ -1,3 +1,5 @@
+//Point of entry for program. Iterates through the input path & creates list of all files. Creates a ReadContents object for each file
+//Also accepts the queries & returns the results of each query in sub-second time leveraging ReadContents class & TrieNode class
 package FileRead;
 import java.io.*;
 import java.util.*;
@@ -5,7 +7,7 @@ public class Main {
 	ArrayList<File> ftotalist=new ArrayList<File>(); 
 static int i=10;static int fc=0;static int dc=0;
 //ArrayList<ReadContents> f_arr;
-ReadContents f_arr[]=new ReadContents[1];
+ArrayList<ReadContents> f_arr=new ArrayList<ReadContents>();
 public static void main(String args[])throws IOException
 {
 	Main code=new Main();
@@ -26,17 +28,17 @@ void FileListMaker()throws IOException
 	System.out.println("Enter path:- ");
 	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 	String path=br.readLine();
-	System.out.println("Accepted= "+path);
+//	System.out.println("Accepted= "+path);
 	ArrayList<File> flist=new ArrayList<File>();
 	File s=new File(path);
 	flist.add(s);
-	System.out.println(s.getPath());
+	//System.out.println(s.getPath());
 	
 	int lc=0;
 	//for(File f:flist)
 	//	System.out.print(f.getName()+"=====");
 	do {
-		System.out.println(lc+++" and "+flist.get(0).getPath());
+	//	System.out.println(lc+++" and "+flist.get(0).getPath());
 	if(flist.get(0).isDirectory())
 	{
 		String flist_t[]=new String[(flist.get(0).list()).length];
@@ -58,7 +60,7 @@ void FileListMaker()throws IOException
 	}
 	else {
 	//	System.out.println("File name= "+flist.get(0).getName());
-
+		
 //		System.out.println("Being deleted= "+flist.get(0));
 		ftotalist.add(flist.get(0));
 		flist.remove(0);
@@ -73,13 +75,13 @@ void FileListMaker()throws IOException
 //	System.out.println("Out of there! Total number of files= "+fc+" and of directories= "+dc);
 }
 //Testing confirmed Indexing is broken currently
-void Invoke_Reader()
+void Invoke_Reader()throws IOException
 {
 	@SuppressWarnings("unused")
-	ReadContents t_obj;
+	ReadContents t_obj;	
 	for(File p:ftotalist)
 	{
-		System.out.println("Hohoho ="+p.toString());
+	//	System.out.println("Hohoho ="+p.toString());
 		try 
 		{
 			t_obj=new ReadContents(p);
@@ -88,7 +90,7 @@ void Invoke_Reader()
 		//	System.out.println("Hohoho2 ="+f_arr.get(f_arr.size()-1).toString());
 			//f_arr.get(f_arr.size()-1).ReadfrmFile();		
 			//f_arr.add(t_obj);
-			f_arr[0]=t_obj;
+			f_arr.add(t_obj);
 		}
 		catch(FileNotFoundException e)
 		{
@@ -101,9 +103,12 @@ void Invoke_Reader()
 	}
 	for(ReadContents p:f_arr)
 	{
+		//System.out.println("File= "+p.p.toString());
+		
 		try 
 		{
-			p.Indexer();
+			//p.Indexer();
+			p.WordIndexer();
 		}
 		catch(Exception e)
 		{
@@ -121,23 +126,27 @@ void QueryRunner()throws Exception
 	{
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter search text= ");
-		String q_st=br.readLine();int flag=0;
+		String q_st=br.readLine();
 		for(ReadContents f:f_arr)
 		{
-			ArrayList<Long> res=f.positionfinder(q_st);
+			//System.out.println("Searching in file= "+f.p.toString());
+			ArrayList<Long> res=null;
+			res=f.positionfinder(q_st);
 			if(res!=null)
-			{
-				flag++;
+			{				
 				System.out.println("FOUND IN FILE "+f.p.getAbsolutePath()+":-");
+				System.out.println("Number of times= "+res.size());
 				for(long t:res)
 				{
-					System.out.println("        At position "+(t-q_st.length()+4));
+					System.out.println("        At line "+(t));
+					System.out.println("context= ");
+					f.otl.get((int)t);
 				}
 			}
 			
 		}
-		if(flag==0)
-			System.out.println("Not found");
+	//	if(flag==0)
+		//	System.out.println("Not found");
 		System.out.println("Got anymore ?");
 		conti=Boolean.parseBoolean(br.readLine());
 	}
