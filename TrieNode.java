@@ -45,20 +45,6 @@ class TrieNode {
 			
 		}	
 		
-		
-	/*	if(arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65]!=null)
-		{
-			arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65].loc_ptr.add((long)g_i);
-			arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65].insert(v.substring(1),g_i+1);
-		}
-		else
-		{
-			arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65]=new TrieNode();
-			arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65].loc_ptr.add((long)g_i);
-			arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65].insert(v.substring(1),g_i+1);
-			
-		}		
-		*/
 	}
 	
 	ArrayList<Long> find(String v,int i)
@@ -103,11 +89,7 @@ class TrieNode {
 					return temp_res;
 				
 			}
-		/*	if(arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65]!=null)
-				return arr[(v.charAt(0)>=97)?v.charAt(0)-97:v.charAt(0)-65].find(v,i+1);
-			else
-				return null;*/
-		//	return temp_res;
+		
 		}
 			
 		
